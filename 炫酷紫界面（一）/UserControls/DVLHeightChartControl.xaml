@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="炫酷紫界面_一_.UserControls.DVLHeightChartControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:炫酷紫界面_一_.UserControls"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="400" Background="White"
+             d:DataContext="{d:DesignInstance local:DVLHeightChartControl}">
+    <Grid>
+        <!--此处禁用datatooltip，动画速度单位是时:分:秒-->
+        <lvc:CartesianChart LegendLocation="Top" AnimationsSpeed="0:0:0.2" Hoverable="False">
+            <!--曲线-->
+            <lvc:CartesianChart.Series>
+                <!--曲线1参数-->
+                <lvc:LineSeries Title="DVL离底高度" Values="{Binding DVlHeigthSeriesValues}" 
+                            	PointGeometry="{x:Static lvc:DefaultGeometries.Circle}" 
+                            	PointGeometrySize="8"
+                            	LineSmoothness="1"
+                            	StrokeThickness="2" 
+                            	Stroke="#FF6190FF"
+                            	Fill="Transparent"/>
+                <!--曲线2参数-->
+                <lvc:LineSeries Title="深度计" Values="{Binding DepthGaugeSeriesValues}" 
+                            	PointGeometry="{x:Static lvc:DefaultGeometries.Circle}" 
+                            	PointGeometrySize="8"
+                            	LineSmoothness="1"
+                            	StrokeThickness="2" 
+                            	Stroke="#FF075219"
+                            	Fill="Transparent"
+                            	ScalesYAt="1"/>
+            </lvc:CartesianChart.Series>
+            <!--X坐标轴-->
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="时刻" ShowLabels="True" FontWeight="Bold">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator IsEnabled="False" Step="1"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <!--两条Y坐标轴-->
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Foreground="#FFFF2E00" Title="DVL离底高度  m" MaxValue="50" MinValue="0" FontWeight="Bold"/>
+                <lvc:Axis Foreground="#FFB10020" Title="深度计  m" Position="RightTop" MaxValue="10" MinValue="0" FontWeight="Bold"/>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
+    </Grid>
+</UserControl>

@@ -1,0 +1,146 @@
+﻿<Page x:Class="炫酷紫界面_一_.View.DataShowPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:炫酷紫界面_一_.View"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      DataContext="{Binding Source={StaticResource Locator}, Path=SaveExcelViewModel}"
+      mc:Ignorable="d" FontFamily="/炫酷紫界面（一）;component/Fonts/#FontAwesome"
+      d:DesignWidth="900"
+      Title="DataShowPage" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="230"/>
+        </Grid.ColumnDefinitions>
+        
+        <Border BorderBrush="#51557A" BorderThickness="0 0 1 0" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Margin="50 20 50 0">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <TextBlock Margin="10 0 0 0" Text="ROV数据表" Foreground="White" FontSize="50" VerticalAlignment="Center" FontFamily="Arial Black"/>
+                        <TextBlock Text="&#xf140;" Foreground="#E5E846" FontSize="50" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0">
+                        <TextBlock Name="ExcelShowText" Text="请选择文件" Foreground="White" FontSize="40" VerticalAlignment="Center" FontFamily="Arial Black"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="1" Margin="10 20 10 20" Background="#EEEEEE" CornerRadius="30" Padding="10">
+                    <Border.Effect>
+                        <DropShadowEffect Direction="225" ShadowDepth="8" BlurRadius="10"/>
+                    </Border.Effect>
+
+                    <DataGrid Name="DataGridShow" FontFamily="Arial Black" hc:DataGridAttach.CanUnselectAllWithBlankArea="True" HeadersVisibility="All" RowHeaderWidth="50" AutoGenerateColumns="False">
+                        <DataGrid.RowHeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                            </DataTemplate>
+                        </DataGrid.RowHeaderTemplate>
+                        
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding DataTime}" Header="时刻"/>
+                            <DataGridTemplateColumn Width="52" CanUserResize="False">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding DataImagePath}" Width="30" Height="30" Stretch="Uniform"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding AngleX}" Header="角度X"/>
+                            <DataGridTextColumn Binding="{Binding AngleY}" Header="角度Y"/>
+                            <DataGridTextColumn Binding="{Binding AngleZ}" Header="角度Z"/>
+                            <DataGridTextColumn Binding="{Binding AngleVelX}" Header="角速度X"/>
+                            <DataGridTextColumn Binding="{Binding AngleVelY}" Header="角速度Y"/>
+                            <DataGridTextColumn Binding="{Binding AngleVelZ}" Header="角速度Z"/>
+                            <DataGridTextColumn Binding="{Binding AngleAccelX}" Header="加速度X"/>
+                            <DataGridTextColumn Binding="{Binding AngleAccelY}" Header="加速度Y"/>
+                            <DataGridTextColumn Binding="{Binding AngleAccelZ}" Header="加速度Z"/>
+                            <DataGridTextColumn Binding="{Binding ForwardSpeed}" Header="前向速度"/>
+                            <DataGridTextColumn Binding="{Binding LateralSpeed}" Header="侧向速度"/>
+                            <DataGridTextColumn Binding="{Binding VerticalSpeed}" Header="垂向速度"/>
+                            <DataGridTextColumn Binding="{Binding HeightBottom}" Header="离底高度"/>
+                            <DataGridTextColumn Binding="{Binding DepthGauge}" Header="深度cm"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+                
+                <Image Name="ShowImageBiliBili" Grid.Row="1" Source="/炫酷紫界面（一）;component/images/noUser.png" Width="256" Height="256"/>
+            </Grid>
+        </Border>
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--搜索框-->
+            <Border Height="50" Margin="10 0 0 0" BorderThickness="1" BorderBrush="#747F9D" CornerRadius="12">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="&#xf002;" Foreground="#747F9D" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="SelectTextBox" Grid.Column="1" BorderThickness="0" FontSize="20" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Background="Transparent" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" CaretBrush="White" />
+                    <TextBlock Width="{Binding ElementName=SelectTextBox,Path=ActualWidth}" Text=" 请搜索数据"  Grid.Column="1" Foreground="#747F9D" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=SelectTextBox,Path=Text}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=SelectTextBox,Path=Text}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Text="&#xf0a2;" Grid.Column="2" Foreground="#747F9D" FontSize="20" FontFamily="/炫酷紫界面（一）;component/Fonts/#FontAwesome" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1" Background="#EEEEEE" CornerRadius="20" Margin="10 0 0 20" Padding="10">
+                <Border.Effect>
+                    <DropShadowEffect Direction="225" ShadowDepth="12" BlurRadius="10"/>
+                </Border.Effect>
+
+                <ListView Name="FileTree" FontSize="14" FontWeight="Heavy" MouseDoubleClick="FileTree_MouseDoubleClick">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="20" DisplayMemberBinding="{Binding FileId}"/>
+                            <GridViewColumn Width="36">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding FileImagePath}" Width="24" Height="24" Stretch="Fill" HorizontalAlignment="Left"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="118" Header="EXCEL &#xf121;" DisplayMemberBinding="{Binding FileName}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

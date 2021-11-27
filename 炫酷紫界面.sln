@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "炫酷紫界面（一）", "炫酷紫界面（一）\炫酷紫界面（一）.csproj", "{115EC895-7D63-4DF7-BF0F-1F9FC5CB7174}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ROVSetupProject", "ROVSetupProject\ROVSetupProject.vdproj", "{4733DA4C-6B4D-4EC5-A991-7E8078995B0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{115EC895-7D63-4DF7-BF0F-1F9FC5CB7174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{115EC895-7D63-4DF7-BF0F-1F9FC5CB7174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{115EC895-7D63-4DF7-BF0F-1F9FC5CB7174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{115EC895-7D63-4DF7-BF0F-1F9FC5CB7174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4733DA4C-6B4D-4EC5-A991-7E8078995B0F}.Debug|Any CPU.ActiveCfg = Debug
+		{4733DA4C-6B4D-4EC5-A991-7E8078995B0F}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7715A802-572A-4CB5-BC9A-0E20E2EB7C19}
+	EndGlobalSection
+EndGlobal

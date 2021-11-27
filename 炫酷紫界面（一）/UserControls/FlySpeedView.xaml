@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="炫酷紫界面_一_.UserControls.FlySpeedView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:炫酷紫界面_一_.UserControls"
+             mc:Ignorable="d" 
+             Name="flyspeedview"
+             d:DesignHeight="150" d:DesignWidth="260">
+    <Viewbox>
+        <Canvas Width="260" Height="150" ClipToBounds="True">
+            <Rectangle Stroke="White" Width="260" Height="150" StrokeThickness="6" RadiusX="20" RadiusY="20"/>
+            <TextBlock Text="{Binding ElementName=flyspeedview, Path=Hundred}" FontSize="80" Foreground="White" Canvas.Left="10" Canvas.Top="25"/>
+            <TextBlock Text="{Binding ElementName=flyspeedview, Path=Ten}" FontSize="80" Foreground="White" Canvas.Left="60" Canvas.Top="25"/>
+            <TextBlock FontSize="80" Foreground="White" Canvas.Left="100" Canvas.Top="25">.</TextBlock>
+            <StackPanel Orientation="Vertical" Canvas.Left="130" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="{Binding ElementName=flyspeedview, Path=OneTapeTranfY}"/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+                <TextBlock FontSize="46" Foreground="White" Height="48">9</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">8</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">7</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">6</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">5</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">4</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">3</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">2</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">1</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">0</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Canvas.Left="170" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="{Binding ElementName=flyspeedview, Path=TwoTapeTranfY}"/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+                <TextBlock FontSize="46" Foreground="White" Height="48">9</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">8</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">7</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">6</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">5</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">4</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">3</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">2</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">1</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">0</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Canvas.Left="210" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="{Binding ElementName=flyspeedview, Path=ThreeTapeTranfY}"/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+                <TextBlock FontSize="46" Foreground="White" Height="48">9</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">8</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">7</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">6</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">5</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">4</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">3</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">2</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">1</TextBlock>
+                <TextBlock FontSize="46" Foreground="White" Height="48">0</TextBlock>
+            </StackPanel>
+        </Canvas>
+    </Viewbox>
+</UserControl>

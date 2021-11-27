@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="炫酷紫界面_一_.UserControls.AccelChartControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:炫酷紫界面_一_.UserControls"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="400" Background="White"
+             d:DataContext="{d:DesignInstance local:AccelChartControl}">
+    <Grid>
+        <!--此处禁用datatooltip，动画速度单位是时:分:秒-->
+        <lvc:CartesianChart LegendLocation="Top" AnimationsSpeed="0:0:0.2" Hoverable="False">
+            <!--曲线-->
+            <lvc:CartesianChart.Series>
+                <!--曲线1参数-->
+                <lvc:LineSeries Title="加速度X" Values="{Binding AngleAccelXSeriesValues}" 
+                            	PointGeometry="{x:Static lvc:DefaultGeometries.Circle}" 
+                            	PointGeometrySize="8"
+                            	LineSmoothness="1"
+                            	StrokeThickness="2" 
+                            	Stroke="#FFFF61CD"
+                            	Fill="Transparent"/>
+                <!--曲线2参数-->
+                <lvc:LineSeries Title="加速度Y" Values="{Binding AngleAccelYSeriesValues}" 
+                            	PointGeometry="{x:Static lvc:DefaultGeometries.Diamond}" 
+                            	PointGeometrySize="8"
+                            	LineSmoothness="1"
+                            	StrokeThickness="2" 
+                            	Stroke="#FF0B8026"
+                            	Fill="Transparent"
+                            	ScalesYAt="1"/>
+                <!--曲线2参数-->
+                <lvc:LineSeries Title="加速度Z" Values="{Binding AngleAccelZSeriesValues}" 
+                            	PointGeometry="{x:Static lvc:DefaultGeometries.Cross}" 
+                            	PointGeometrySize="8"
+                            	LineSmoothness="1"
+                            	StrokeThickness="2" 
+                            	Stroke="Orange"
+                            	Fill="Transparent"
+                            	ScalesYAt="1"/>
+            </lvc:CartesianChart.Series>
+            <!--X坐标轴-->
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="时刻" ShowLabels="True" FontWeight="Bold">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator IsEnabled="False" Step="1"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <!--两条Y坐标轴-->
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Foreground="#FF0083FF" Title="加速度  g" MaxValue="16" MinValue="-16" FontWeight="Bold"/>
+                <lvc:Axis Foreground="#FFD000FF" Title="加速度  g" Position="RightTop" MaxValue="16" MinValue="-16" FontWeight="Bold"/>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
+    </Grid>
+</UserControl>

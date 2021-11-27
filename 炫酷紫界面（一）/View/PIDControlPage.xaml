@@ -1,0 +1,207 @@
+﻿<Page x:Class="炫酷紫界面_一_.View.PIDControlPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:炫酷紫界面_一_.View"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      xmlns:toy="clr-namespace:炫酷紫界面_一_.Toy"
+      DataContext="{Binding Source={StaticResource Locator}, Path=PIDViewModel}"
+      FontFamily="/炫酷紫界面（一）;component/Fonts/#FontAwesome"
+      mc:Ignorable="d" 
+      d:DesignWidth="900"
+      Title="PIDControlPage" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+                <ResourceDictionary Source="/ResourceDictionary/CopyAppleUIDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <!--左边三轴显示-->
+        <Border BorderBrush="#51557A" BorderThickness="0 0 1 0" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--标题-->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Margin="100 0 0 0" Text="ROV模式PID" Foreground="White" FontSize="50" VerticalAlignment="Center" FontFamily="Arial Black"/>
+                    <TextBlock Text="&#xf225;" Foreground="#E5E846" FontSize="50" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <Grid Grid.Row="1" Margin="50 20 50 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Height="400" Background="#7663FB" CornerRadius="40" Padding="34" MaxWidth="800">
+                        <Border.Effect>
+                            <DropShadowEffect Direction="225" ShadowDepth="8" BlurRadius="10"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="100"/>
+                            </Grid.RowDefinitions>
+                            <UniformGrid Rows="4" Columns="3">
+                                <TextBlock Text="角度环" Foreground="White" FontSize="30" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                <TextBlock Text="速度环" Foreground="White" FontSize="30" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                <TextBlock Text="深度环" Foreground="White" FontSize="30" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                <DockPanel>
+                                    <TextBlock Text="Kp" Foreground="White" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                    <hc:TextBox Text="{Binding PidData.AngleKp, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ShowClearButton="True" FontSize="25" Margin="5 5 5 5" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="Kp" Foreground="White" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                    <hc:TextBox Text="{Binding PidData.SpeedKp, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ShowClearButton="True" FontSize="25" Margin="5 5 5 5" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="Kp" Foreground="White" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                    <hc:TextBox Text="{Binding PidData.DepthKp, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ShowClearButton="True" FontSize="25" Margin="5 5 5 5" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="Ki " Foreground="White" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                    <hc:TextBox Text="{Binding PidData.AngleKi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ShowClearButton="True" FontSize="25" Margin="5 5 5 5" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="Ki " Foreground="White" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                    <hc:TextBox Text="{Binding PidData.SpeedKi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ShowClearButton="True" FontSize="25" Margin="5 5 5 5" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="Ki " Foreground="White" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                    <hc:TextBox Text="{Binding PidData.DepthKi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ShowClearButton="True" FontSize="25" Margin="5 5 5 5" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="Kd" Foreground="White" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                    <hc:TextBox Text="{Binding PidData.AngleKd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ShowClearButton="True" FontSize="25" Margin="5 5 5 5" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="Kd" Foreground="White" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                    <hc:TextBox Text="{Binding PidData.SpeedKd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ShowClearButton="True" FontSize="25" Margin="5 5 5 5" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="Kd" Foreground="White" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                                    <hc:TextBox Text="{Binding PidData.DepthKd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ShowClearButton="True" FontSize="25" Margin="5 5 5 5" />
+                                </DockPanel>
+                            </UniformGrid>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <RepeatButton Command="{Binding SetupPID}" Content="设置PID" Margin="5" Height="40" FontSize="30" Style="{StaticResource RepeatButtonSuccess}" hc:IconElement.Geometry="{StaticResource SuccessGeometry}" Cursor="Hand"/>
+
+                                <RepeatButton Command="{Binding SavePID}" Content="保存设置" Margin="30 5 5 5" Height="40" FontSize="30" Style="{StaticResource RepeatButtonDanger}" hc:IconElement.Geometry="{StaticResource DeleteFillCircleGeometry}" Cursor="Hand"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Row="1" Background="Black" CornerRadius="40" Margin="0 20 0 20" Padding="20" MaxWidth="800">
+                        <Border.Effect>
+                            <DropShadowEffect Direction="225" ShadowDepth="8" BlurRadius="10"/>
+                        </Border.Effect>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Slider Style="{DynamicResource CopyAppleUISlider}" Width="400" Height="48" Value="20" Minimum="0" Maximum="100" Margin="0 0 0 30"/>
+                            <toy:WaveCanvas x:Name="wave" Width="270" Height="90" Totals="45"/>-->
+                            <hc:RunningBlock Content="{Binding PidText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontWeight="Bold" Width="450" Height="50" Speed="20" Foreground="#FF00FFC3" Margin="0 0 0 30"/>
+                            <toy:WaveCanvas x:Name="wave" Width="270" Height="90" Totals="45"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!--右边栏-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <!--搜索框-->
+            <Border Height="50" Margin="10 0 0 0" BorderThickness="1" BorderBrush="#747F9D" CornerRadius="12">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="&#xf002;" Foreground="#747F9D" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="SelectTextBox" Grid.Column="1" BorderThickness="0" FontSize="20" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Background="Transparent" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" CaretBrush="White" />
+                    <TextBlock Width="{Binding ElementName=SelectTextBox,Path=ActualWidth}" Text=" 请搜索想要的信息"  Grid.Column="1" Foreground="#747F9D" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=SelectTextBox,Path=Text}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=SelectTextBox,Path=Text}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Text="&#xf0a2;" Grid.Column="2" Foreground="#747F9D" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </Border>
+            <!--消息列表和搜索框同台-->
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right">
+                <StackPanel hc:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="0,40,-10,0"/>
+            </ScrollViewer>
+            <!--模式控制-->
+            <Border Grid.Row="1" Background="#FF05070C" Margin="10,0,0,30" CornerRadius="40" Padding="10">
+                <Border.Effect>
+                    <DropShadowEffect Direction="225" ShadowDepth="8" BlurRadius="10"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Margin="40 0 0 0" Text="自动航行" Foreground="White" FontSize="35" VerticalAlignment="Center" FontFamily="Arial Black"/>
+                        <TextBlock Text="&#xf21a;" Foreground="#FFE89746" FontSize="40" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <UniformGrid Grid.Row="1" Columns="3">
+                        <TextBlock Text="定航" Foreground="#FFFF00D3" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                        <TextBlock Text="悬停" Foreground="#FFFF00D3" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                        <TextBlock Text="定深" Foreground="#FFFF00D3" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black"/>
+                    </UniformGrid>
+                    <Border Grid.Row="2">
+                        <hc:ButtonGroup>
+                            <RadioButton Command="{Binding FixedVoyageButton}" Content="&#xf208;" FontSize="20" Background="{DynamicResource ActiveBackground}" Cursor="Hand"/>
+                            <RadioButton Command="{Binding HoverButton}" Content="&#xf21a;" FontSize="20" Background="{DynamicResource ActiveBackground}" Cursor="Hand"/>
+                            <RadioButton Command="{Binding FixedDepthButton}" Content="&#xf237;" FontSize="20" Background="{DynamicResource ActiveBackground}" Cursor="Hand"/>
+                        </hc:ButtonGroup>
+                    </Border>
+                    <Grid Grid.Row="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+                        <UniformGrid Grid.Row="0" Columns="2">
+                            <Slider Value="{Binding FixedVoyageValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Minimum="-180" Maximum="180" MinHeight="300" hc:TipElement.Visibility="Visible" Background="{DynamicResource FectionBackground}" hc:TipElement.Placement="Right" hc:TipElement.StringFormat="#0" TickPlacement="Both" HorizontalAlignment="Center" Orientation="Vertical"/>
+                            <Slider Value="{Binding FixedDepthValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Minimum="0" Maximum="10" MinHeight="300" hc:TipElement.Visibility="Visible" Background="{DynamicResource DefaultBackground}" hc:TipElement.Placement="Right" hc:TipElement.StringFormat="#0.00" SmallChange="1" TickPlacement="Both" HorizontalAlignment="Center" Orientation="Vertical"/>
+                        </UniformGrid>
+                        <Border Grid.Row="1">
+                            <hc:RunningBlock Content="{Binding NavigationText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Width="250" Speed="40" Foreground="OrangeRed"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+            </Border>
+
+        </Grid>
+    </Grid>
+</Page>

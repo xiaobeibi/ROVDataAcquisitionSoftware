@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="炫酷紫界面_一_.UserControls.TimeCompass"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:炫酷紫界面_一_.UserControls"
+             mc:Ignorable="d" 
+             xmlns:ec="http://schemas.microsoft.com/expression/2010/controls"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             d:DesignHeight="900" d:DesignWidth="900">
+    <Grid x:Name="RootHost">
+        <Grid RenderTransformOrigin="0.5,0.5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="12*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="12*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Ellipse x:Name="BigAnglePath" Grid.RowSpan="3" Grid.ColumnSpan="3" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <ec:PathListBox x:Name="LongTick" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"
+                            ItemsSource="{Binding Path=LongTicks, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:TimeCompass}}}">
+                <ec:PathListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Path Data="M 0 0 L 0 6" Stroke="#33FF64" StrokeThickness="1"  SnapsToDevicePixels="True" UseLayoutRounding="False" />
+                    </DataTemplate>
+                </ec:PathListBox.ItemTemplate>
+                <ec:PathListBox.LayoutPaths>
+                    <ec:LayoutPath Distribution="Even" Orientation="OrientToPath" SourceElement="{Binding ElementName=BigAnglePath}"  />
+                </ec:PathListBox.LayoutPaths>
+            </ec:PathListBox>
+
+            <ed:Arc x:Name="TimeArc" StartAngle="0" EndAngle="0" Grid.RowSpan="3" Grid.ColumnSpan="3" ArcThickness="4" Fill="#FF9503" Stretch="None"></ed:Arc>
+
+            <Ellipse x:Name="SmallAnglePath" Grid.RowSpan="3" Grid.ColumnSpan="3" RenderTransformOrigin="0.5 0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <ec:PathListBox x:Name="ShortTick" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"
+                            ItemsSource="{Binding Path=ShortTicks, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:TimeCompass}}}">
+                <ec:PathListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Path Data="M 0 0 L 0 6" Stroke="#808080" StrokeThickness="1"  SnapsToDevicePixels="True" UseLayoutRounding="False" />
+                    </DataTemplate>
+                </ec:PathListBox.ItemTemplate>
+                <ec:PathListBox.LayoutPaths>
+                    <ec:LayoutPath Distribution="Even" Orientation="OrientToPath" SourceElement="{Binding ElementName=SmallAnglePath}"  />
+                </ec:PathListBox.LayoutPaths>
+            </ec:PathListBox>
+
+            <Ellipse x:Name="NumberPath" Grid.Row="1" Grid.Column="1" RenderTransformOrigin="0.5 0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            <ec:PathListBox x:Name="NumberTick" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"
+                            ItemsSource="{Binding Path=Numbers, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:TimeCompass}}}">
+                <ec:PathListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" SnapsToDevicePixels="True" UseLayoutRounding="False" Foreground="White"/>
+                    </DataTemplate>
+                </ec:PathListBox.ItemTemplate>
+                <ec:PathListBox.LayoutPaths>
+                    <ec:LayoutPath Distribution="Even" Orientation="None" SourceElement="{Binding ElementName=NumberPath}"  />
+                </ec:PathListBox.LayoutPaths>
+            </ec:PathListBox>
+        </Grid>
+    </Grid>
+</UserControl>

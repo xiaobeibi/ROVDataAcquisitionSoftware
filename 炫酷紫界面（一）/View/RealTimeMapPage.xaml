@@ -1,0 +1,105 @@
+﻿<Page x:Class="炫酷紫界面_一_.View.RealTimeMapPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:炫酷紫界面_一_.View"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      mc:Ignorable="d" 
+      d:DesignHeight="780" d:DesignWidth="900"
+      Title="RealTimeMapPage" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+                <ResourceDictionary Source="/ResourceDictionary/SerialPortDebugDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Border BorderBrush="#51557A">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--标题-->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Text="ROV实时位置图" Foreground="White" FontSize="50" VerticalAlignment="Center" FontFamily="Arial Black"/>
+                    <TextBlock Text="&#xf0ac;" Foreground="#E5E846" FontSize="50" VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="/炫酷紫界面（一）;component/Fonts/#FontAwesome"/>
+                </StackPanel>
+
+                <Grid Grid.Row="1" Margin="40 10 40 10">
+                    <Border CornerRadius="30" Padding="10">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
+                                <GradientStop Color="#273272" Offset="0"/>
+                                <GradientStop Color="#273252" Offset="0.65"/>
+                                <GradientStop Color="#273252" Offset="0.6"/>
+                                <GradientStop Color="#4F4279" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.Effect>
+                            <DropShadowEffect Direction="225" ShadowDepth="8" BlurRadius="10"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="80"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" BorderThickness="10" BorderBrush="AntiqueWhite" CornerRadius="20">
+                                <WebBrowser x:Name="WebBrowserMap"/>
+                            </Border>
+
+                            <Border Grid.Row="1" CornerRadius="20" Margin="50,10,50,10">
+                                <Border.Effect>
+                                    <DropShadowEffect Direction="270" ShadowDepth="10" BlurRadius="18"/>
+                                </Border.Effect>
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
+                                        <GradientStop Color="#273272" Offset="0"/>
+                                        <GradientStop Color="#273252" Offset="0.65"/>
+                                        <GradientStop Color="#273252" Offset="0.6"/>
+                                        <GradientStop Color="#4F4279" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <ToggleButton x:Name="OpenRealTimeMap" IsChecked="True" Height="50" Width="50" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonSwitch}" Cursor="Hand"/>
+                                    
+                                    <Button Name="GetDistanceButton" Click="GetDistanceButton_Click" Content="&#xf0ad;" Style="{DynamicResource ButtonStyleForMimic}" RenderTransformOrigin="0.5,0.5" Height="60" Width="60" Margin="150,0,0,0" FontFamily="/炫酷紫界面（一）;component/Fonts/#FontAwesome">
+                                        <hc:Poptip.Instance>
+                                            <hc:Poptip Content="测量距离" PlacementType="Bottom" FontSize="18" FontWeight="Bold" Height="30" Width="94"/>
+                                        </hc:Poptip.Instance>
+                                    </Button>
+                                    
+                                    <Button Name="ClearAllButton" Click="ClearAllButton_Click" Content="&#xf05c;" Style="{DynamicResource ButtonStyleForMimic}" RenderTransformOrigin="0.5,0.5" Height="60" Width="60" Margin="100,0,0,0" FontFamily="/炫酷紫界面（一）;component/Fonts/#FontAwesome">
+                                        <hc:Poptip.Instance>
+                                            <hc:Poptip Content="清除标注" PlacementType="Bottom" FontSize="18" FontWeight="Bold" Height="30" Width="94"/>
+                                        </hc:Poptip.Instance>
+                                    </Button>
+                                    
+                                    <ToggleButton x:Name="OpenRouteTracking" BorderThickness="0" IsChecked="False" Height="40" Width="40" Margin="150,0,0,0" Cursor="Hand" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonFlip}">
+                                        <hc:StatusSwitchElement.CheckedElement>
+                                            <Border Background="{DynamicResource PrimaryBrush}">
+                                                <TextBlock FontFamily="Arial Black" HorizontalAlignment="Center" VerticalAlignment="Center" Text="关" Foreground="{DynamicResource TextIconBrush}"/>
+                                            </Border>
+                                        </hc:StatusSwitchElement.CheckedElement>
+                                        <Border Background="{DynamicResource DangerBrush}">
+                                            <TextBlock FontFamily="Arial Black" HorizontalAlignment="Center" VerticalAlignment="Center" Text="开" Foreground="{DynamicResource TextIconBrush}"/>
+                                        </Border>
+                                    </ToggleButton>
+                                    
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

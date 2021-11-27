@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<PID>
+  <AngleKp>1.2</AngleKp>
+  <AngleKi>1</AngleKi>
+  <AngleKd>3</AngleKd>
+  <SpeedKp>
+  </SpeedKp>
+  <SpeedKi>5</SpeedKi>
+  <SpeedKd>3</SpeedKd>
+  <DepthKp>34</DepthKp>
+  <DepthKi>34</DepthKi>
+  <DepthKd>5</DepthKd>
+</PID>

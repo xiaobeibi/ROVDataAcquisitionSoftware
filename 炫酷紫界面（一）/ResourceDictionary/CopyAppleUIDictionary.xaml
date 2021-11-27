@@ -1,0 +1,437 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+                    xmlns:Toy="clr-namespace:炫酷紫界面_一_.Toy">
+
+    <!--按钮样式-->
+    <LinearGradientBrush x:Key="DefaultBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF1319" Offset="0"/>
+        <GradientStop Color="#F5317A" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ActiveBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#A1FF00" Offset="0"/>
+        <GradientStop Color="#A1FF00" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="FectionBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#67FAED" Offset="0"/>
+        <GradientStop Color="#24CAD9" Offset="1"/>
+    </LinearGradientBrush>
+
+    <Style x:Key="CopyAppleUIButton" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="180"></Setter>
+        <Setter Property="Height" Value="45"></Setter>
+        <Setter Property="Margin" Value="5"></Setter>
+        <Setter Property="FontSize" Value="18"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Background" Value="{StaticResource DefaultBackground}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle x:Name="rectangle" RadiusY="10" RadiusX="10" Fill="{TemplateBinding Background}" RenderTransformOrigin="0.5,0.5">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True"/>
+                        <Trigger Property="IsDefaulted" Value="True"/>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.7" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="RenderTransform" TargetName="rectangle">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="180"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False"/>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--ProgressCircleStyle-->
+    <Style x:Key="MymadeProgressCircle" TargetType="{x:Type Toy:ProgressCircle}">
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="Height" Value="100"></Setter>
+        <Setter Property="Minimum" Value="0"></Setter>
+        <Setter Property="Maximum" Value="100"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Toy:ProgressCircle}">
+                    <Grid>
+                        <Grid.LayoutTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                            </TransformGroup>
+                        </Grid.LayoutTransform>
+                        <ed:Arc Stretch="None" EndAngle="360" StartAngle="0" StrokeThickness="10">
+                            <ed:Arc.Stroke>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#092135" Offset="0"/>
+                                    <GradientStop Color="#092F35" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ed:Arc.Stroke>
+                        </ed:Arc>
+                        <ed:Arc Stretch="None" x:Name="PART_ValueArc" StartAngle="0" EndAngle="0"
+                                    StrokeEndLineCap="Round" StrokeStartLineCap="Round" 
+                                    StrokeThickness="10" RenderTransformOrigin="0.5,0.5">
+                            <ed:Arc.Stroke>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#1FDAFF"/>
+                                    <GradientStop Color="#1F94F9" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ed:Arc.Stroke>
+                            <ed:Arc.RenderTransform>
+                                <TransformGroup>
+                                    <RotateTransform Angle="-180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </ed:Arc.RenderTransform>
+                        </ed:Arc>
+                        <Ellipse Width="10" Height="10" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+                            <Ellipse.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Ellipse.RenderTransform>
+                            <Ellipse.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#1FDAFF" Offset="0"/>
+                                    <GradientStop Color="#1FDAFF" Offset="0.5"/>
+                                    <GradientStop Color="#092F35" Offset="0.5"/>
+                                    <GradientStop Color="#092F35" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Ellipse x:Name="PART_ValueElli" Width="6" Height="6" Fill="White" RenderTransformOrigin="0.5,-7" VerticalAlignment="Bottom" Margin="2">
+                            <!-- -RenderTransformOrigin.Y=(Grid.Height/2-this.Height-this.Margin.Bottom)/this.Height -->
+                            <!-- [-y=(100/2-6-2)/6]=>y=-7 这样就可以通过SizeChanged动态部署控件-->
+                            <Ellipse.RenderTransform>
+                                <TransformGroup>
+                                    <RotateTransform Angle="{Binding EndAngle, ElementName=PART_ValueArc}" />
+                                </TransformGroup>
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FlatProgressCircle" TargetType="{x:Type Toy:ProgressCircle}">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Minimum" Value="0"/>
+        <Setter Property="Maximum" Value="100"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Toy:ProgressCircle}">
+                    <Grid>
+                        <ed:Arc Stretch="None" EndAngle="360" StartAngle="0" StrokeThickness="10" Stroke="#0E2231"></ed:Arc>
+                        <ed:Arc Stretch="None" x:Name="PART_ValueArc" StartAngle="0" EndAngle="0"
+                            StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="#5AB7FC"
+                            StrokeThickness="10" RenderTransformOrigin="0.5,0.5"></ed:Arc>
+
+                        <Ellipse x:Name="PART_ValueElli" Visibility="Collapsed" Width="6" Height="6" Fill="White" RenderTransformOrigin="0.5,-7" VerticalAlignment="Bottom" Margin="2">
+                            <!-- -RenderTransformOrigin.Y=(Grid.Height/2-this.Height-this.Margin.Bottom)/this.Height -->
+                            <!-- [-y=(100/2-6-2)/6]=>y=-7 这样就可以通过SizeChanged动态部署控件-->
+                            <Ellipse.RenderTransform>
+                                <TransformGroup>
+                                    <RotateTransform Angle="{Binding EndAngle, ElementName=PART_ValueArc}" />
+                                </TransformGroup>
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Flat2ProgressCircle" TargetType="{x:Type Toy:ProgressCircle}">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Minimum" Value="0"/>
+        <Setter Property="Maximum" Value="100"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Toy:ProgressCircle}">
+                    <Grid>
+                        <ed:Arc Stretch="None" EndAngle="360" StartAngle="0" StrokeThickness="10" Stroke="#0A2121"></ed:Arc>
+                        <ed:Arc Stretch="None" x:Name="PART_ValueArc" StartAngle="0" EndAngle="0"
+                            StrokeEndLineCap="Round" StrokeStartLineCap="Round" Stroke="#4ADDDC"
+                            StrokeThickness="10" RenderTransformOrigin="0.5,0.5"></ed:Arc>
+                        <Path Data="M 0 3 L 6 3 L 3 1 M 6 3 L 3 5" Width="6" Height="6" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Margin="2">
+                        </Path>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Flat3ProgressCircle" TargetType="{x:Type Toy:ProgressCircle}">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Minimum" Value="0"/>
+        <Setter Property="Maximum" Value="100"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Toy:ProgressCircle}">
+                    <Grid>
+                        <ed:Arc Stretch="None" EndAngle="360" StartAngle="0" StrokeThickness="10" Stroke="#0A2121"></ed:Arc>
+                        <ed:Arc Stretch="None" x:Name="PART_ValueArc" StartAngle="0" EndAngle="0"
+                            StrokeEndLineCap="Round" StrokeStartLineCap="Round"
+                            StrokeThickness="10" RenderTransformOrigin="0.5,0.5">
+                            <ed:Arc.Stroke>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF1414" Offset="0"/>
+                                    <GradientStop Color="#FD08A8" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ed:Arc.Stroke>
+                        </ed:Arc>
+                        <Path Data="M 0 3 L 6 3 L 3 1 M 6 3 L 3 5" Width="6" Height="6" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Margin="2">
+                        </Path>
+                        <Ellipse x:Name="PART_ValueElli" Width="6" Height="6" Fill="White" RenderTransformOrigin="0.5,-7" VerticalAlignment="Bottom" Margin="2">
+                            <Ellipse.RenderTransform>
+                                <TransformGroup>
+                                    <RotateTransform Angle="30" />
+                                </TransformGroup>
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--滚动条样式-->
+    <Style x:Key="SliderThumb"  TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid>
+                        <Rectangle  Width="16" Height="15" Fill="#FF2F57" RadiusX="5" RadiusY="5"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TrackRepeatButton"  TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid>
+                        <Rectangle Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SliderLRepeatButton"  TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="18 0 0 18">
+                        <Path Data="M 0 0 L 1 0" Width="16" Height="16" Stretch="Fill" Margin="10 0 0 0"
+                                    Stroke="#FFFFFF" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SliderRRepeatButton"  TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="0 18 18 0">
+                        <Path Data="M 0 0.5 L 1 0.5 M 0.5 0 L 0.5 1" Width="16" Height="16" Stretch="Fill" Margin="0 0 10 0" 
+                                    Stroke="#FFFFFF" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="CopyAppleUISlider" TargetType="{x:Type Slider}">
+        <Setter Property="MinHeight" Value="36"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Slider}">
+                    <Border CornerRadius="18" x:Name="RootLayout">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#616663" Offset="0"/>
+                                <GradientStop Color="#343535" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <RepeatButton Grid.RowSpan="3" Style="{DynamicResource SliderLRepeatButton}" Command="Slider.DecreaseLarge"/>
+
+                            <Border Grid.Row="1" Grid.Column="1" Height="20" Margin="5 0" CornerRadius="3" Background="#323535"/>
+
+                            <TickBar Grid.Column="1" Visibility="Collapsed" x:Name="TopTick" Height="15" SnapsToDevicePixels="True" Placement="Top" Fill="{TemplateBinding Foreground}"/>
+
+                            <Track Grid.Row="1" Grid.Column="1" x:Name="PART_Track" Margin="5 0">
+                                <Track.Thumb>
+                                    <Thumb Style="{DynamicResource SliderThumb}"/>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Style="{DynamicResource TrackRepeatButton}" Command="Slider.IncreaseLarge"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Style="{DynamicResource TrackRepeatButton}" Command="Slider.DecreaseLarge"/>
+                                </Track.DecreaseRepeatButton>
+                            </Track>
+
+                            <TickBar Grid.Column="1" Visibility="Collapsed" Grid.Row="2" x:Name="BottomTick" Height="15" SnapsToDevicePixels="True" Placement="Bottom" Fill="{TemplateBinding Foreground}"/>
+
+                            <RepeatButton Grid.RowSpan="3"  Grid.Column="2" Style="{DynamicResource SliderRRepeatButton}" Command="Slider.IncreaseLarge"/>
+
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TickPlacement" Value="TopLeft">
+                            <Setter Property="Visibility" Value="Visible" TargetName="TopTick"/>
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="BottomRight">
+                            <Setter Property="Visibility" Value="Visible" TargetName="BottomTick"/>
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="Both">
+                            <Setter Property="Visibility" Value="Visible" TargetName="TopTick"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="BottomTick"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                        </Trigger>
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter Property="LayoutTransform" TargetName="RootLayout">
+                                <Setter.Value>
+                                    <RotateTransform Angle="-90"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="PART_Track" Property="Orientation" Value="Horizontal"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--进度条样式-->
+    <Style x:Key="CopyAppleUIProgressBarStyle" TargetType="{x:Type ProgressBar}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ProgressBar}">
+                    <Grid x:Name="TemplateRoot">
+                        <Grid.Clip>
+                            <RectangleGeometry RadiusX="20" RadiusY="20" >
+                                <RectangleGeometry.Rect>
+                                    <Rect X="0" Y="0" Width="455" Height="40"/>
+                                </RectangleGeometry.Rect>
+                            </RectangleGeometry>
+                        </Grid.Clip>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Determinate"/>
+                                <VisualState x:Name="Indeterminate">
+                                    <Storyboard RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Animation">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.25"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.25"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.25"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="Animation">
+                                            <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5"/>
+                                            <EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5"/>
+                                            <EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5"/>
+                                        </PointAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border  Background="{TemplateBinding Background}" CornerRadius="20"/>
+                        <Rectangle x:Name="PART_Track" RadiusX="20" RadiusY="20"/>
+                        <Grid x:Name="PART_Indicator" ClipToBounds="true" HorizontalAlignment="Left">
+                            <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}" RadiusX="20" RadiusY="20"/>
+                            <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RadiusX="20" RadiusY="20" RenderTransformOrigin="0.5,0.5">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                <Setter.Value>
+                                    <RotateTransform Angle="-90"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsIndeterminate" Value="true">
+                            <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

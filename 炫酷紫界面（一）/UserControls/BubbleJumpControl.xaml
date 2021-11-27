@@ -1,0 +1,46 @@
+﻿<Window x:Class="炫酷紫界面_一_.UserControls.BubbleJumpControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:炫酷紫界面_一_.UserControls"
+        mc:Ignorable="d"
+        Name="ThisWindow"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterOwner" 
+        Title="BubbleJumpControl" Height="50" Width="200" Loaded="ThisWindow_Loaded">
+    <Window.Resources>
+        <Storyboard x:Key="OpenStoryboard" Completed="Storyboard_Completed">
+            <DoubleAnimation From="0" To="{Binding ElementName=ThisWindow,Path=Width}" Duration="00:00:00.5"
+                             Storyboard.TargetName="RootBorder" Storyboard.TargetProperty="Width">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="CloseStoryboard" Completed="Storyboard_Completed_1">
+            <DoubleAnimation From="{Binding ElementName=ThisWindow,Path=Width}" To="0" Duration="00:00:00.5"
+                             Storyboard.TargetName="RootBorder" Storyboard.TargetProperty="Width">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <StaticResource ResourceKey="OpenStoryboard"/>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Border Name="RootBorder">
+        <Border.Background>
+            <ImageBrush ImageSource="/images/leftImage.png" Stretch="Fill"/>
+        </Border.Background>
+        <TextBlock Text="IP地址无效" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="#FF0DEBBE" Name="MessageBox"/>
+    </Border>
+</Window>

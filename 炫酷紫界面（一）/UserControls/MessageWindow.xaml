@@ -1,0 +1,55 @@
+﻿<Window x:Class="炫酷紫界面_一_.UserControls.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:炫酷紫界面_一_.UserControls"
+        mc:Ignorable="d"
+        Title="MessageWindow" Height="180" Width="360" WindowStyle="None" 
+        AllowsTransparency="True" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" RenderTransformOrigin="0.5,0.5" 
+        Background="Transparent" OpacityMask="White" ResizeMode="NoResize">
+    <Window.RenderTransform>
+        <ScaleTransform x:Name="Scale" ScaleX="1" ScaleY="{Binding ElementName=Scale,Path=ScaleX}"/>
+    </Window.RenderTransform>
+    <Border Background="White" Height="140" Width="270" BorderThickness="2" BorderBrush="Gray" CornerRadius="32,32,32,32" Name="top">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" Color="White" BlurRadius="4"/>
+        </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Foreground" Value="DarkGray"/>
+                </Style>
+            </Grid.Resources>
+            <TextBlock Text="{Binding Path=Header}" FontSize="36" Foreground="#FFF31111" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="{Binding Path=Message}" Grid.Row="1" FontSize="18" Foreground="#FF6B6464"></TextBlock>
+            <Button Grid.Row="2" Content="OK" FontSize="28" Width="200" Height="40" Click="Button_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="LightBlue"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Border>
+</Window>
